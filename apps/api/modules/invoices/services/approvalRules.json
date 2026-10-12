@@ -1,0 +1,106 @@
+{
+  "$schema": "NCG Invoice Approval Validation Rules — v1.0",
+  "$doc": "Single source of truth for approval path determination and required field validation. Read by both the Express backend (services/approvalValidator.js) and exposed via GET /api/approval-schema for frontend consumption.",
+
+  "fieldLabels": {
+    "invoice_number": "Invoice Number",
+    "vendor_code": "Vendor",
+    "invoice_date": "Invoice Date",
+    "gl_date": "GL Date",
+    "amount": "Amount",
+    "job_match_number": "Job",
+    "phase_code": "Phase Code",
+    "cost_type": "Cost Type",
+    "gl_account": "GL Account",
+    "routing_code": "Routing Code",
+    "linked_lien_waiver_id": "Lien Waiver"
+  },
+
+  "paths": {
+    "1": {
+      "name": "Job + Subcontract (within budget)",
+      "condition": "Has job AND subcontract AND invoice amount ≤ subcontract unbilled balance",
+      "required": [
+        "invoice_number", "vendor_code", "invoice_date", "gl_date",
+        "amount", "job_match_number", "phase_code", "cost_type", "gl_account"
+      ],
+      "autoRouting": {
+        "enabled": true,
+        "defaultCode": "D",
+        "description": "Routing auto-assigned to D (AP Default) if not explicitly set"
+      },
+      "approvalStatus": "A"
+    },
+    "2": {
+      "name": "Job + No subcontract (or over budget)",
+      "condition": "Has job AND (no subcontract OR invoice amount > unbilled balance)",
+      "required": [
+        "invoice_number", "vendor_code", "invoice_date", "gl_date",
+        "amount", "job_match_number", "phase_code", "cost_type", "gl_account", "routing_code"
+      ],
+      "autoRouting": {
+        "enabled": false,
+        "description": "Routing code is required — must be PM code or explicit selection"
+      },
+      "approvalStatus": "U"
+    },
+    "3": {
+      "name": "SG&A (no job)",
+      "condition": "No job number assigned",
+      "required": [
+        "invoice_number", "vendor_code", "invoice_date", "amount", "gl_account"
+      ],
+      "autoRouting": {
+        "enabled": true,
+        "defaultCode": "D",
+        "description": "Routing auto-assigned to D (AP Default) if not explicitly set"
+      },
+      "approvalStatus": "U"
+    }
+  },
+
+  "multiPhaseOverrides": {
+    "description": "When an invoice is flagged as multi_phase_candidate AND has phase_allocations set, the doc-level phase_code and cost_type are not required — each allocation row carries its own.",
+    "skipFields": ["phase_code", "cost_type"],
+    "guards": [
+      {
+        "code": "MULTI_PHASE_ALLOCATION_REQUIRED",
+        "condition": "multi_phase_candidate === true AND phase_allocations is null",
+        "message": "Cannot approve: this invoice is on a multi-phase subcontract and requires a phase allocation."
+      },
+      {
+        "code": "PM_ROUTING_REQUIRED",
+        "condition": "multi_phase_candidate AND phase_allocations set AND invoice amount > subcontract unbilled AND no routing_code",
+        "message": "Cannot approve: invoice exceeds subcontract unbilled budget and requires PM routing."
+      }
+    ]
+  },
+
+  "codingDefaults": {
+    "$doc": "Advisory coding pre-fill defaults served in GET /api/validate-approval codingDefaults (and additively in GET /api/approval-schema). These are pre-fill HINTS for the client, NOT persisted state: the DB triggers persist only their own case (trg_default_cost_type: matched subcontract with empty cost_type -> 'S'). Precedence is always row/trigger value first; a configured default applies only when the column is unset. costType.subcontractDefault MUST equal the trigger's persisted value so the served hint stays trigger-consistent.",
+    "glAccount": {
+      "subcontract": "5450",
+      "nonSubcontract": "5300",
+      "description": "GL account pre-fill when gl_account is unset: subcontract rows -> 5450, otherwise -> 5300."
+    },
+    "costType": {
+      "subcontractDefault": "S",
+      "nonSubcontractDefault": "M",
+      "description": "Cost type pre-fill when cost_type is unset: subcontract rows -> 'S' (trigger-consistent), otherwise -> 'M'."
+    },
+    "costTypeGlMap": {
+      "$doc": "Spectrum JC_COST_TYPE_MASTER (Company_Code NCG): cost type -> distribution GL account. Spectrum rejects job-coded lines whose distribution GL does not match this master ('Cost type does not match distribution G/L account'). L (Labor) has no GL account in the master and is intentionally absent.",
+      "map": {
+        "B": "5850",
+        "E": "5500",
+        "M": "5300",
+        "O": "5600",
+        "S": "5450",
+        "X": "5999"
+      }
+    }
+  },
+
+  "version": "1.2.0",
+  "lastUpdated": "2026-07-24"
+}

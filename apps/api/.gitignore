@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Environment (secrets — NEVER commit)
+.env
+.env.local
+.env.*.local
+.env.backup*
+
+# Data directory (runtime data — large files, cached JSON, PDFs)
+data/
+
+# Test samples (local PDF fixtures)
+test-samples/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# APM runtime artifacts
+.apm/
+
+# Old/deprecated files
+*.old
+.env.bak*

@@ -1,0 +1,89 @@
+@keyframes resolve-tray-rise {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes activity-entry-rise {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes tab-body-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes motion-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes queue-arrival {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.queueArrivalRow[data-arriving="true"] {
+  animation: queue-arrival var(--dur-press) var(--ease-out) both;
+  animation-delay: calc(var(--queue-row-order) * 30ms);
+}
+
+.queueRow > :global(td) {
+  transition: background-color var(--dur-hover) var(--ease-out);
+}
+
+.queueCheckbox {
+  animation: none;
+  transition: none;
+}
+
+.progressBar {
+  transition: width var(--dur-progress) linear;
+}
+
+.spinner {
+  animation-duration: var(--dur-spin);
+  animation-timing-function: linear;
+}
+
+.spinnerScope :global(.animate-spin) {
+  animation-duration: var(--dur-spin);
+  animation-timing-function: linear;
+}
+
+.resolveTray {
+  animation: resolve-tray-rise var(--dur-modal) var(--ease-out) both;
+}
+
+.newActivityEntry {
+  animation: activity-entry-rise var(--dur-modal) var(--ease-out) both;
+}
+
+.invoiceTabBody > div > :global(.contents):not([hidden]) {
+  animation: tab-body-fade var(--dur-pop) var(--ease-out) both;
+}
+
+.documentTabBody:not([hidden]) {
+  animation: tab-body-fade var(--dur-pop) var(--ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .queueArrivalRow[data-arriving="true"] {
+    animation: none;
+    opacity: 1;
+  }
+
+  .resolveTray,
+  .newActivityEntry,
+  .invoiceTabBody > div > :global(.contents):not([hidden]),
+  .documentTabBody:not([hidden]) {
+    animation-name: motion-fade;
+    animation-duration: var(--dur-hover);
+    transform: none;
+  }
+
+  .spinner,
+  .spinnerScope :global(.animate-spin) {
+    animation-play-state: paused;
+  }
+}

@@ -1,0 +1,25 @@
+.cardResolve,
+.cardPromote {
+  will-change: transform, opacity;
+}
+
+.cardResolve { transition: opacity var(--dur-sheet) var(--ease-out), transform var(--dur-sheet) var(--ease-out); }
+.cardPromote { transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out); }
+
+.enter { opacity: 1; transform: none; }
+.exit { opacity: 1; transform: none; }
+.rest { opacity: 1; transform: none; }
+.cardResolve.exit { opacity: 0; transform: translateX(110%); }
+.cardPromote.enter { opacity: 0; transform: translateY(8px) scale(.96); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cardResolve,
+  .cardPromote {
+    will-change: opacity;
+    transition-property: opacity;
+    transition-duration: var(--dur-exit);
+    transition-timing-function: var(--ease-out);
+  }
+  .cardResolve.exit,
+  .cardPromote.enter { transform: none; }
+}

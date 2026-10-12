@@ -1,0 +1,57 @@
+.splitShell {
+  position: relative;
+}
+
+.splitPane {
+  transition: none;
+}
+
+.splitShell[data-split-resizing="true"] .splitPane {
+  transition: none;
+}
+
+.splitShell[data-split-reset="true"] .splitPane {
+  transition: width 180ms var(--ease-in-out);
+}
+
+.handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 30;
+  width: 12px;
+  transform: translateX(-50%);
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.handle::after {
+  position: absolute;
+  inset: 0 5px;
+  content: "";
+}
+
+.handle:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: -2px;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  cursor: col-resize;
+  background: transparent;
+}
+
+@media (max-width: 1099px) {
+  .handle {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splitPane {
+    transition: none;
+  }
+}

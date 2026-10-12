@@ -1,0 +1,37 @@
+.stack {
+  container-type: inline-size;
+  position: relative;
+  min-height: 74px;
+  margin: 8px 10px 10px;
+}
+
+.fitContent {
+  display: grid;
+}
+
+.fitContent .card {
+  position: relative;
+  inset: auto;
+  grid-area: 1 / 1;
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid color-mix(in srgb, var(--tone-amber) 30%, transparent);
+  border-radius: 10px;
+  background: var(--card);
+  padding: 10px 13px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 6%);
+}
+
+.front { z-index: 3; pointer-events: auto; }
+.peekOne { z-index: 2; transform: translateY(6px) scale(.97); opacity: .7; }
+.peekTwo { z-index: 1; transform: translateY(12px) scale(.94); opacity: .4; }
+.hidden { z-index: 0; transform: translateY(14px) scale(.92); opacity: 0; }
+.promotionStart { transition: none !important; }
+
+@container (max-width: 700px) {
+  .stack { margin-inline: 4px; }
+}

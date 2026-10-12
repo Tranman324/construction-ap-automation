@@ -1,0 +1,172 @@
+{
+  "buildingPermit": {
+    "classification": "building-permit",
+    "raw": {
+      "project": "Harbor View Tower Renovation",
+      "siteAddress": "100 River Road, Mobile, AL 36602"
+    },
+    "expected": {
+      "projectName": "Harbor View Tower Renovation",
+      "projectAddress": "100 River Road, Mobile, AL 36602"
+    }
+  },
+  "otherProjectDocument": {
+    "classification": "other",
+    "raw": {
+      "jobName": "North Clinic Expansion",
+      "propertyAddress": "42 Clinic Drive, Birmingham, AL 35203"
+    },
+    "expected": {
+      "projectName": "North Clinic Expansion",
+      "projectAddress": "42 Clinic Drive, Birmingham, AL 35203"
+    }
+  },
+  "receipt": {
+    "classification": "receipt",
+    "context": {
+      "emailSubject": "Receipt for job 26-434"
+    },
+    "raw": {
+      "vendorName": "The Home Depot",
+      "vendorAddress": "1 Supply Way",
+      "invoiceNumber": "8841",
+      "invoiceDate": "2026-06-15",
+      "dueDate": null,
+      "amount": 128.44,
+      "projectName": null,
+      "projectAddress": null,
+      "description": "Paint and jobsite supplies",
+      "poNumber": "PO 26-434",
+      "lineItems": [
+        {
+          "description": "Paint",
+          "amount": 128.44,
+          "invoiceNumber": null,
+          "invoiceDate": null,
+          "dueDate": null,
+          "jobRef": null,
+          "jobAddress": null,
+          "subcontractRef": null
+        }
+      ]
+    },
+    "expected": {
+      "vendorName": "The Home Depot",
+      "vendorAddress": "1 Supply Way",
+      "invoiceNumber": "8841",
+      "invoiceDate": "2026-06-15",
+      "dueDate": null,
+      "amount": 128.44,
+      "projectName": null,
+      "projectAddress": null,
+      "description": "Paint and jobsite supplies",
+      "poNumber": "PO 26-434",
+      "jobRef": "26-434",
+      "lineItems": [
+        {
+          "description": "Paint",
+          "amount": 128.44,
+          "invoiceNumber": null,
+          "invoiceDate": null,
+          "dueDate": null,
+          "jobRef": null,
+          "jobAddress": null,
+          "subcontractRef": null
+        }
+      ]
+    }
+  },
+  "coi": {
+    "classification": "coi",
+    "raw": {
+      "namedInsured": "Summit Steel LLC",
+      "policyExpirationDate": "2026-12-31"
+    },
+    "expected": {
+      "insuredName": "Summit Steel LLC",
+      "expirationDate": "2026-12-31"
+    }
+  },
+  "statement": {
+    "classification": "statement",
+    "context": {
+      "emailFrom": "ap@example-vendor.test"
+    },
+    "raw": {
+      "vendorName": "Lark Safety",
+      "period": "June 2026",
+      "balanceDue": "$1,234.56"
+    },
+    "expected": {
+      "vendor": "Lark Safety",
+      "statementPeriod": "June 2026",
+      "balance": 1234.56
+    }
+  },
+  "statementWithoutDocumentVendor": {
+    "classification": "statement",
+    "context": {
+      "emailFrom": "sender-only@example-vendor.test"
+    },
+    "raw": {
+      "period": "July 2026",
+      "balanceDue": "$99.50"
+    },
+    "expected": {
+      "vendor": null,
+      "statementPeriod": "July 2026",
+      "balance": 99.5
+    }
+  },
+  "lienWaiver": {
+    "classification": "lien-waiver",
+    "raw": {
+      "claimantName": "Summit Steel LLC",
+      "amountReleased": "$4,275.50",
+      "invoiceReference": "INV-900",
+      "projectNumber": "26-434"
+    },
+    "expected": {
+      "vendorName": "Summit Steel LLC",
+      "amount": 4275.5,
+      "invoiceNumber": "INV-900",
+      "jobNumber": "26-434"
+    }
+  },
+  "invoiceRegression": {
+    "classification": "invoice",
+    "raw": {
+      "vendorName": "Acme Concrete",
+      "vendorAddress": "7 Yard Lane",
+      "invoiceNumber": "2600287",
+      "invoiceDate": "2026-05-10",
+      "dueDate": "2026-06-09",
+      "amount": 5000,
+      "jobNumber": "26-434",
+      "projectName": "North Clinic Expansion",
+      "projectAddress": "42 Clinic Drive",
+      "description": "Concrete work",
+      "lineItems": [
+        {
+          "description": "Pour slab",
+          "amount": 5000,
+          "jobRef": "26-434",
+          "subcontractRef": "26-434.02"
+        }
+      ]
+    }
+  },
+  "creditMemoRegression": {
+    "classification": "credit-memo",
+    "raw": {
+      "vendorName": "Acme Concrete",
+      "invoiceNumber": "CM-42",
+      "invoiceDate": "2026-05-20",
+      "dueDate": null,
+      "amount": -250,
+      "jobNumber": "26-434",
+      "description": "Credit for returned material",
+      "lineItems": []
+    }
+  }
+}

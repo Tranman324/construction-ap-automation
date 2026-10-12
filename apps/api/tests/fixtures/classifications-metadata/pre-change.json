@@ -1,0 +1,99 @@
+[
+  {
+    "name": "invoice",
+    "label": "Invoice",
+    "action": "extract-match",
+    "builtIn": true,
+    "opensAs": "invoice",
+    "status": "active"
+  },
+  {
+    "name": "receipt",
+    "label": "Receipt",
+    "action": "extract-match",
+    "builtIn": true,
+    "opensAs": "receipt",
+    "status": "active"
+  },
+  {
+    "name": "pay-application",
+    "label": "Pay Application",
+    "action": "extract-match",
+    "builtIn": true,
+    "opensAs": "invoice",
+    "status": "active"
+  },
+  {
+    "name": "statement",
+    "label": "Statement",
+    "action": "view-only",
+    "builtIn": true,
+    "opensAs": "statement",
+    "status": "active"
+  },
+  {
+    "name": "coi",
+    "label": "Certificate of Insurance",
+    "action": "view-only",
+    "builtIn": true,
+    "opensAs": "coi",
+    "status": "active"
+  },
+  {
+    "name": "w9",
+    "label": "W-9 Tax Form",
+    "action": "view-only",
+    "builtIn": true,
+    "opensAs": "w9",
+    "status": "active"
+  },
+  {
+    "name": "lien-waiver",
+    "label": "Lien Waiver",
+    "action": "view-only",
+    "builtIn": true,
+    "opensAs": "lien-waiver",
+    "status": "active"
+  },
+  {
+    "name": "purchase-order",
+    "label": "Purchase Order",
+    "action": "extract-match",
+    "builtIn": true,
+    "opensAs": "invoice",
+    "status": "active"
+  },
+  {
+    "name": "credit-memo",
+    "label": "Credit Memo / Adjustment",
+    "action": "extract-match",
+    "builtIn": true,
+    "opensAs": "invoice",
+    "status": "active"
+  },
+  {
+    "name": "building-permit",
+    "label": "Building Permit",
+    "action": "view-only",
+    "builtIn": true,
+    "opensAs": "other",
+    "status": "active"
+  },
+  {
+    "name": "other",
+    "label": "Other / Unclassified",
+    "action": "view-only",
+    "builtIn": true,
+    "opensAs": "other",
+    "status": "active"
+  },
+  {
+    "name": "custom-type",
+    "label": "Custom Type",
+    "action": "view-only",
+    "builtIn": false,
+    "opensAs": "statement",
+    "status": "active",
+    "addedAt": "2026-07-01T00:00:00.000Z"
+  }
+]

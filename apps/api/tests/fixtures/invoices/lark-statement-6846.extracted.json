@@ -1,0 +1,81 @@
+{
+  "_provenance": "Anonymized statement fixture (vendor identity and addresses replaced), extracted via pdftotext 2026-07-03. This is the authoritative Lark extracted-JSON shape for Task 1.4's synthetic fixture. Amounts verified: sub-items roll up to parent invoice amounts; line total equals statement balance.",
+  "vendor": "B. Lark Interiors, Inc.",
+  "vendorAddress": "3100 Example Hwy, Springfield, GA 30116",
+  "vendorEmail": "robin@larkinteriors.example",
+  "statementNumber": "6846",
+  "statementDate": "2026-07-01",
+  "statementPeriod": null,
+  "balance": 50930.00,
+  "aging": {
+    "current": 0.00,
+    "days1to30": 42830.00,
+    "days31to60": 6480.00,
+    "days61to90": 0.00,
+    "days90plus": 1620.00
+  },
+  "lines": [
+    {
+      "invoiceNumber": "7338",
+      "date": "2026-02-09",
+      "dueDate": "2026-03-11",
+      "amount": 1620.00,
+      "openAmount": 1620.00,
+      "description": "Furnish and install (2) Piedmont Plugs.",
+      "subItems": [
+        { "date": "2026-02-09", "description": "Furnish and install (2) Piedmont Plugs.", "amount": 1620.00 }
+      ]
+    },
+    {
+      "invoiceNumber": "7530",
+      "date": "2026-04-22",
+      "dueDate": "2026-05-22",
+      "amount": 6480.00,
+      "openAmount": 6480.00,
+      "description": "Furnish and install Piedmont Plugs at (8) window mullions.",
+      "subItems": [
+        { "date": "2026-04-22", "description": "Furnish and install Piedmont Plugs at (8) window mullions.", "amount": 6480.00 }
+      ]
+    },
+    {
+      "invoiceNumber": "7552",
+      "date": "2026-05-06",
+      "dueDate": "2026-06-05",
+      "amount": 32590.00,
+      "openAmount": 32590.00,
+      "description": "Furnish and install Piedmont Plugs at (5) locations; (1) banquette; Fabric Panels on (3) walls; shop drawings.",
+      "subItems": [
+        { "date": "2026-05-06", "description": "Furnish and install Piedmont Plugs at (5) locations.", "amount": 4050.00 },
+        { "date": "2026-05-06", "description": "Furnish and install (1) banquette.", "amount": 13530.00 },
+        { "date": "2026-05-06", "description": "Furnish and install Fabric Panels on (3) walls.", "amount": 14010.00 },
+        { "date": "2026-05-06", "description": "Shop drawings.", "amount": 1000.00 }
+      ]
+    },
+    {
+      "invoiceNumber": "7558",
+      "date": "2026-05-06",
+      "dueDate": "2026-06-05",
+      "amount": 10240.00,
+      "openAmount": 10240.00,
+      "description": "Furnish and install 6 timberz at open office 412; 11 timberz at open office 402; shop drawings.",
+      "subItems": [
+        { "date": "2026-05-06", "description": "Furnish and install 6 timberz at open office 412.", "amount": 3330.00 },
+        { "date": "2026-05-06", "description": "Furnish and install 11 timberz at open office 402.", "amount": 6110.00 },
+        { "date": "2026-05-06", "description": "Shop drawings.", "amount": 800.00 }
+      ]
+    }
+  ],
+  "_rollupRules": [
+    "A parent line = one invoice reference (Invoice #NNNN) with its total AMOUNT column value.",
+    "Sub-item detail lines ('--- <date> <description> = $X') belong to the preceding parent invoice line and MUST roll up: sum(subItems.amount) === parent.amount.",
+    "The statement_lines JSONB written to documents stores ONE line per parent invoice: {id, invoiceNumber, date, amount, status, source:'extracted'} — subItems are extraction detail, not separate statement lines.",
+    "Statement spans multiple pages; the aging table repeats per page — parse lines from all pages, dedupe the aging/total block.",
+    "Vendor comes from document letterhead content, never the email sender (this doc arrived as 'FW: Monthly Statement' from a NCG forwarder)."
+  ],
+  "_expectedStatementLines": [
+    { "invoiceNumber": "7338", "date": "2026-02-09", "amount": 1620.00, "source": "extracted" },
+    { "invoiceNumber": "7530", "date": "2026-04-22", "amount": 6480.00, "source": "extracted" },
+    { "invoiceNumber": "7552", "date": "2026-05-06", "amount": 32590.00, "source": "extracted" },
+    { "invoiceNumber": "7558", "date": "2026-05-06", "amount": 10240.00, "source": "extracted" }
+  ]
+}

@@ -1,0 +1,68 @@
+.root {
+  position: relative;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  min-height: 0;
+  height: 100%;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--dur-quick) var(--ease-out);
+}
+
+.stage {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 220ms ease-out, transform 220ms ease-out, visibility 0s linear 0s;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: var(--background);
+  opacity: 1;
+  transition: opacity 100ms ease-out;
+  pointer-events: auto;
+}
+
+.root[data-phase="loading"] [data-panel-stage] {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: none;
+}
+
+.root[data-phase="loading"] .content {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.root[data-phase="ready"] [data-panel-stage] {
+  opacity: 1;
+  visibility: visible;
+}
+
+.root[data-phase="ready"] [data-panel-stage="status"] { transition-delay: 0ms; }
+.root[data-phase="ready"] [data-panel-stage="tabs"] { transition-delay: 50ms; }
+.root[data-phase="ready"] [data-panel-stage="body"] { transition-delay: 100ms; }
+.root[data-phase="ready"] [data-panel-stage="footer"] { transition-delay: 150ms; }
+
+.root[data-skeleton-visible="false"] .overlay {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage,
+  .overlay,
+  .content {
+    transition-duration: 0ms;
+    transition-delay: 0ms;
+  }
+}

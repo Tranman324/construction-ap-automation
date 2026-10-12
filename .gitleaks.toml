@@ -1,0 +1,7 @@
+# Extends the default gitleaks rules. Allowlist entries must name a non-secret value.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "React callback prop name that matches the linkedin-client-id pattern"
+regexes = ['''^onLinkComplete$''']

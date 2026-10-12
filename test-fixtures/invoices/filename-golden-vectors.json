@@ -1,0 +1,328 @@
+{
+  "schema": "p4-filing-filename-golden-vectors/v1",
+  "generator": "apps/web/src/modules/accounting/modules/invoices/components/documents/simpleFilingDocumentModel.ts#buildSharePointFilename",
+  "vectors": [
+    {
+      "name": "invoice abbreviation",
+      "type": "invoice",
+      "vendor": "Halden Brooks Electrical Contractors",
+      "date": "2026-06-15T12:00:00.000Z",
+      "ref": "#2",
+      "extension": "pdf",
+      "expected": "INV Halden Brooks 06-15-26 #2.pdf"
+    },
+    {
+      "name": "receipt abbreviation",
+      "type": "receipt",
+      "vendor": "Home Depot",
+      "date": "2026-06-16T12:00:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "Receipt Home Depot 06-16-26.pdf"
+    },
+    {
+      "name": "statement abbreviation",
+      "type": "statement",
+      "vendor": "Lark Carlton",
+      "date": "2026-06-17T12:00:00.000Z",
+      "ref": "STAT-1",
+      "extension": "pdf",
+      "expected": "Statement Lark Carlton 06-17-26 STAT-1.pdf"
+    },
+    {
+      "name": "coi abbreviation",
+      "type": "coi",
+      "vendor": "Tidewater Commercial Flooring",
+      "date": "2026-06-18T12:00:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "Certificate of Insurance Tidewater 06-18-26.pdf"
+    },
+    {
+      "name": "w9 abbreviation",
+      "type": "w9",
+      "vendor": "Acme Builders",
+      "date": "2026-06-19T12:00:00.000Z",
+      "ref": "W9-42",
+      "extension": "PDF",
+      "expected": "W-9 Acme Builders 06-19-26 W9-42.pdf"
+    },
+    {
+      "name": "lien waiver abbreviation",
+      "type": "lien-waiver",
+      "vendor": "BuildRight",
+      "date": "2026-06-20T12:00:00.000Z",
+      "ref": "LW-77",
+      "extension": "docx",
+      "expected": "Lien Waiver BuildRight 06-20-26 LW-77.docx"
+    },
+    {
+      "name": "building permit abbreviation",
+      "type": "building-permit",
+      "vendor": "City of Springfield",
+      "date": "2026-06-09T12:00:00.000Z",
+      "ref": "BLDG2606070375",
+      "extension": "pdf",
+      "expected": "Building Permit City of 06-09-26.pdf"
+    },
+    {
+      "name": "warranty abbreviation",
+      "type": "warranty",
+      "vendor": "Home Warranty",
+      "date": "2026-06-21T12:00:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "Warranty Home Warranty 06-21-26.pdf"
+    },
+    {
+      "name": "credit memo full-word label",
+      "type": "credit-memo",
+      "vendor": "Unknown Office",
+      "date": "2026-06-23T12:00:00.000Z",
+      "ref": "CM-3",
+      "extension": "txt",
+      "expected": "Credit Memo Unknown Office 06-23-26 CM-3.txt"
+    },
+    {
+      "name": "email-only vendor strips domain",
+      "type": "other",
+      "vendor": "billing@example.com",
+      "vendorSource": "email",
+      "date": "2026-06-24T12:00:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "Document billing 06-24-26.pdf"
+    },
+    {
+      "name": "vendor truncates at word boundary",
+      "type": "invoice",
+      "vendor": "Tidewater Commercial Flooring",
+      "date": "2026-06-25T12:00:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "INV Tidewater 06-25-26.pdf"
+    },
+    {
+      "name": "vendor truncates without a usable boundary",
+      "type": "invoice",
+      "vendor": "SupercalifragilisticVendor",
+      "date": "2026-06-26T12:00:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "INV Supercalifragil 06-26-26.pdf"
+    },
+    {
+      "name": "vendor early space uses fixed-length branch",
+      "type": "invoice",
+      "vendor": "ABCD VeryLongVendorName",
+      "date": "2026-06-27T12:00:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "INV ABCD VeryLongVe 06-27-26.pdf"
+    },
+    {
+      "name": "ten-character reference is retained",
+      "type": "invoice",
+      "vendor": "Reference Vendor",
+      "date": "2026-06-28T12:00:00.000Z",
+      "ref": "1234567890",
+      "extension": "pdf",
+      "expected": "INV Reference 06-28-26 1234567890.pdf"
+    },
+    {
+      "name": "eleven-character reference is dropped",
+      "type": "invoice",
+      "vendor": "Reference Vendor",
+      "date": "2026-06-29T12:00:00.000Z",
+      "ref": "12345678901",
+      "extension": "pdf",
+      "expected": "INV Reference 06-29-26.pdf"
+    },
+    {
+      "name": "vendor and reference sanitizer",
+      "type": "warranty",
+      "vendor": "A&B / Roofing: East {Phase}",
+      "date": "2026-07-02T12:00:00.000Z",
+      "ref": "WO?12",
+      "extension": ".PDF",
+      "expected": "Warranty AB Roofing East 07-02-26 WO12.pdf"
+    },
+    {
+      "name": "invalid date is omitted",
+      "type": "other",
+      "vendor": "No Date Vendor",
+      "date": "not-a-date",
+      "ref": "NO-DATE",
+      "extension": "pdf",
+      "expected": "Document No Date Vendor NO-DATE.pdf"
+    },
+    {
+      "name": "non-pdf extension is lower-cased",
+      "type": "receipt",
+      "vendor": "Photo Vendor",
+      "date": "2026-07-03T12:00:00.000Z",
+      "ref": null,
+      "extension": "JpEg",
+      "expected": "Receipt Photo Vendor 07-03-26.jpeg"
+    },
+    {
+      "name": "uppercase PDF extension is lower-cased",
+      "type": "coi",
+      "vendor": "Coverage Vendor",
+      "date": "2026-07-04T12:00:00.000Z",
+      "ref": null,
+      "extension": ".PDF",
+      "expected": "Certificate of Insurance Coverage Vendor 07-04-26.pdf"
+    },
+    {
+      "name": "missing extension falls back to PDF",
+      "type": "invoice",
+      "vendor": "Extensionless Vendor",
+      "date": "2026-07-05T12:00:00.000Z",
+      "ref": null,
+      "extension": null,
+      "expected": "INV Extensionless 07-05-26.pdf"
+    },
+    {
+      "name": "pay application full-word label",
+      "type": "pay-application",
+      "vendor": "Atlas Electric",
+      "date": "2026-07-06T12:00:00.000Z",
+      "ref": "PA-7",
+      "extension": "pdf",
+      "expected": "Pay Application Atlas Electric 07-06-26 PA-7.pdf"
+    },
+    {
+      "name": "subcontract full-word label",
+      "type": "subcontract",
+      "vendor": "Atlas Electric",
+      "date": "2026-07-07T12:00:00.000Z",
+      "ref": "SUB-7",
+      "extension": "pdf",
+      "expected": "Subcontract Atlas Electric 07-07-26 SUB-7.pdf"
+    },
+    {
+      "name": "image full-word label",
+      "type": "image",
+      "vendor": "Field Team",
+      "date": "2026-07-08T12:00:00.000Z",
+      "ref": null,
+      "extension": "jpg",
+      "expected": "Image Field Team 07-08-26.jpg"
+    },
+    {
+      "name": "contract full-word label",
+      "type": "contract",
+      "vendor": "Atlas Electric",
+      "date": "2026-07-09T12:00:00.000Z",
+      "ref": "CON-7",
+      "extension": "pdf",
+      "expected": "Contract Atlas Electric 07-09-26 CON-7.pdf"
+    },
+    {
+      "name": "change order full-word label",
+      "type": "change-order",
+      "vendor": "Atlas Electric",
+      "date": "2026-07-10T12:00:00.000Z",
+      "ref": "CO-7",
+      "extension": "pdf",
+      "expected": "Change Order Atlas Electric 07-10-26 CO-7.pdf"
+    },
+    {
+      "name": "purchase order full-word label",
+      "type": "purchase-order",
+      "vendor": "Atlas Electric",
+      "date": "2026-07-11T12:00:00.000Z",
+      "ref": "PO-7",
+      "extension": "pdf",
+      "expected": "Purchase Order Atlas Electric 07-11-26 PO-7.pdf"
+    },
+    {
+      "name": "no attachment fallback label",
+      "type": "no-attachment",
+      "vendor": "Mailbox",
+      "date": "2026-07-12T12:00:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "Document Mailbox 07-12-26.pdf"
+    },
+    {
+      "name": "error fallback label",
+      "type": "error",
+      "vendor": "Mailbox",
+      "date": "2026-07-13T12:00:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "Document Mailbox 07-13-26.pdf"
+    },
+    {
+      "name": "all skipped fallback label",
+      "type": "all-skipped",
+      "vendor": "Mailbox",
+      "date": "2026-07-14T12:00:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "Document Mailbox 07-14-26.pdf"
+    },
+    {
+      "name": "skipped fallback label",
+      "type": "skipped",
+      "vendor": "Mailbox",
+      "date": "2026-07-15T12:00:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "Document Mailbox 07-15-26.pdf"
+    },
+    {
+      "name": "unsupported fallback label",
+      "type": "unsupported",
+      "vendor": "Mailbox",
+      "date": "2026-07-16T12:00:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "Document Mailbox 07-16-26.pdf"
+    },
+    {
+      "name": "offset timestamp uses the shared UTC calendar date",
+      "type": "receipt",
+      "vendor": "Timezone Vendor",
+      "date": "2026-07-01T00:30:00.000Z",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "Receipt Timezone Vendor 07-01-26.pdf"
+    },
+    {
+      "name": "manual filing date wins over extracted date",
+      "type": "invoice",
+      "vendor": "Manual Date Vendor",
+      "date": "2026-01-01",
+      "filingDate": "2026-08-14",
+      "filingDateProvenance": "manual",
+      "ref": "MAN-1",
+      "extension": "pdf",
+      "expected": "INV Manual Date 08-14-26 MAN-1.pdf"
+    },
+    {
+      "name": "matching filing date wins when extraction is absent",
+      "type": "receipt",
+      "vendor": "Matching Date Vendor",
+      "date": "2026-01-01",
+      "filingDate": "2026-08-15",
+      "filingDateProvenance": "matching",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "Receipt Matching Date 08-15-26.pdf"
+    },
+    {
+      "name": "COI expiration supplies the filing date",
+      "type": "coi",
+      "vendor": "COI Expiration Vendor",
+      "date": "2026-01-01",
+      "filingDate": "2027-03-31",
+      "filingDateProvenance": "extracted",
+      "ref": null,
+      "extension": "pdf",
+      "expected": "Certificate of Insurance COI Expiration 03-31-27.pdf"
+    }
+  ]
+}

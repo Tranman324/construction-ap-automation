@@ -1,0 +1,64 @@
+.root {
+  position: relative;
+  display: inline-block;
+  inline-size: var(--retrying-loader-size);
+  block-size: var(--retrying-loader-size);
+}
+
+.definitions {
+  position: absolute;
+  inline-size: 0;
+  block-size: 0;
+}
+
+.spinner,
+.shadow {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.start {
+  stop-color: var(--primary);
+}
+
+.end {
+  stop-color: var(--primary-hover);
+}
+
+.arc,
+.dashes {
+  fill: none;
+  stroke-width: 23;
+  stroke-linecap: round;
+}
+
+.arc {
+  animation: retrying-loader-dash 10s linear infinite;
+  stroke-dasharray: 180 800;
+}
+
+.dashes {
+  animation: retrying-loader-dash 3s linear infinite;
+  stroke-dasharray: 26 54;
+}
+
+.shadow {
+  filter: blur(5px);
+  opacity: 0.28;
+  transform: translate(3px, 3px);
+}
+
+@keyframes retrying-loader-dash {
+  to {
+    stroke-dashoffset: -403px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc,
+  .dashes {
+    animation: none;
+  }
+}

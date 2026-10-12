@@ -1,0 +1,19 @@
+.stack {
+  min-height: 0;
+  margin: 8px 10px 14px;
+}
+
+/* The visible card owns layout height, including wrapped text and errors.
+   Peeks remain absolute and retain the shared stack's motion contract. */
+.stack > [data-front="true"] {
+  position: relative;
+  inset: auto;
+}
+
+.stack > [data-card-id] {
+  min-width: 0;
+}
+
+.stack > [data-card-id]:has([data-waiting="true"]) {
+  border-color: color-mix(in srgb, var(--tone-blue) 30%, var(--border));
+}

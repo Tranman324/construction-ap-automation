@@ -1,0 +1,14 @@
+node_modules/
+.next/
+*.log
+.DS_Store
+apps/web/tmp/
+.apm/
+.env
+.env.*
+!.env.example
+*.pem
+.vercel/
+tsconfig.tsbuildinfo
+next-env.d.ts
+*.profraw

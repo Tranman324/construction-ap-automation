@@ -1,0 +1,20 @@
+{
+  "pairs": {
+    "B": "5850",
+    "E": "5500",
+    "M": "5300",
+    "O": "5600",
+    "S": "5450",
+    "X": "5999"
+  },
+  "mismatch": {
+    "code": "COST_TYPE_GL_MISMATCH",
+    "messageTemplate": "Cannot approve: cost type {costType} requires GL account {expectedGl} in Spectrum, but this invoice has {actualGl}. Change the GL account (or the cost type) — Spectrum rejects this combination.",
+    "example": {
+      "costType": "E",
+      "expectedGl": "5500",
+      "actualGl": "5450",
+      "message": "Cannot approve: cost type E requires GL account 5500 in Spectrum, but this invoice has 5450. Change the GL account (or the cost type) — Spectrum rejects this combination."
+    }
+  }
+}

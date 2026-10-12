@@ -1,0 +1,41 @@
+{
+  "name": "invoice-pipeline",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "migrate": "node scripts/migrate.js",
+    "lint": "eslint server.js \"routes/**/*.js\" \"modules/**/routes.js\" \"modules/**/routes/**/*.js\" \"scripts/**/*.js\" \"modules/**/scripts/**/*.js\"",
+    "test": "npm run lint && NODE_ENV=test node --test tests/audit-events.static.test.js tests/classifications.test.js tests/docs/endpoint-standard.test.js tests/security/permission-gates.static.test.js tests/security/invoice-settings-permission-gates.test.js tests/security/endpoint-gates-and-validation.test.js tests/security/route-reachability.test.js tests/security/route-import-boundary.test.js tests/security/script-db-boundary.test.js tests/scriptDb.test.js tests/security/error-pagination.test.js tests/security/response-finalizer.test.js tests/security/permissions.test.js tests/security/auth-trust-boundary.test.js tests/security/rate-limit-keying.test.js tests/security/audit-actor-override.test.js tests/security/platform-audit-trail.test.js tests/security/platform-hardening.test.js tests/security/proxy-tls-controls.test.js tests/security/rules-actor-trust.test.js tests/migrations/runner.test.js tests/observability.test.js tests/schemas.test.js tests/invoices/approval-validator.test.js tests/invoices/approval-state.test.js tests/invoices/approval-status-guards.test.js tests/invoices/unapprove-locking.test.js tests/invoices/bulk-approval-parity.test.js tests/invoices/routing-derivation.test.js tests/invoices/routing-catalog.test.js tests/invoices/dual-use-relocation.test.js tests/invoices/discard-edit-guards.test.js tests/invoices/duplicate-status.test.js tests/invoices/duplicate-approval-blocker.test.js tests/invoices/coi-config.test.js tests/invoices/coi-overrides.test.js tests/invoices/coi-manual-values.test.js tests/invoices/coi-compliance-engine.test.js tests/invoices/coi-detail-route.test.js tests/invoices/spectrum-coi-preflight.test.js tests/invoices/spectrum-coi-upload-transid.test.js tests/invoices/spectrum-upload-errors.test.js tests/invoices/document-destinations.test.js tests/invoices/document-destination-versions.test.js tests/invoices/document-flag.test.js tests/invoices/flag-list-serialization.test.js tests/invoices/ops-discard.test.js tests/invoices/restore-discard-delegation.test.js tests/invoices/per-type-extraction.test.js tests/invoices/per-type-matching.test.js tests/invoices/phase-allocation-validation.test.js tests/invoices/pipeline-dates.test.js tests/invoices/pipeline-ingestion-atomicity.test.js tests/invoices/pipeline-run-provenance.test.js tests/invoices/photo-proxy.test.js tests/invoices/field-origins.test.js tests/invoices/purge-matcher-integrity.test.js tests/invoices/route-hardening.static.test.js tests/invoices/collection-stats.test.js tests/invoices/neighbors-keyset.test.js tests/invoices/classifications-metadata.test.js tests/invoices/rules-apply.test.js tests/invoices/rule-atomicity-ids.test.js tests/invoices/rule-options-catalog.test.js tests/invoices/save-approval-verdict.test.js tests/invoices/sanitize.test.js tests/invoices/service-state-guards.test.js tests/invoices/sharepoint-filename.test.js tests/invoices/sharepoint-filing.test.js tests/invoices/filing-value-resolver.test.js tests/invoices/warranty-classification.test.js tests/invoices/warranty-classification-mutation.test.js tests/invoices/sharepoint-folder-sidecar.test.js tests/invoices/spectrum-validation.test.js tests/invoices/statement-attribute-corrections.test.js tests/invoices/statement-lines.test.js tests/invoices/statement-split-endpoints.test.js tests/invoices/submit-idempotency.static.test.js tests/invoices/submit-payload.test.js tests/invoices/submit-recovery.test.js tests/invoices/submit-result-integrity.test.js tests/invoices/submission-linked-waiver-discard.test.js tests/invoices/submitted-waiver-backfill.test.js tests/invoices/submit-state.test.js tests/invoices/transaction.test.js tests/invoices/undo-system.static.test.js tests/invoices/undo-waiver-override.test.js tests/invoices/waiver-state-amount.test.js tests/invoices/waiver-detection.test.js tests/invoices/waiver-fresh-email.test.js tests/invoices/waiver-gate.static.test.js tests/invoices/waiver-orphan-candidates.test.js tests/invoices/waiver-status-serialization.test.js tests/invoices/approve-linked-waiver.test.js tests/invoices/waiver-recipient.test.js tests/invoices/vendor-contacts.test.js tests/invoices/subject-line-job.test.js tests/invoices/matcher-job-first.test.js tests/invoices/cost-type-gl.test.js tests/invoices/pay-app-numbering.test.js tests/invoices/attachment-junk-filter.test.js tests/invoices/reprocess-route.test.js tests/invoices/spectrum-duplicate-check.test.js tests/invoices/spectrum-list-duplicate.test.js tests/invoices/word-pdf-conversion.test.js tests/validate-query.test.js tests/invoices/comments.test.js tests/invoices/activity.test.js tests/invoices/read-state.test.js tests/invoices/collaboration-coverage.test.js tests/invoices/shared-route-coverage.test.js tests/invoices/email-service.test.js tests/invoices/reply-recipient-resolution.test.js tests/invoices/email-routes.test.js tests/invoices/email-hardening.test.js tests/invoices/email-deletion.test.js tests/invoices/inbound-correlation.test.js tests/invoices/inbound-attachment-routing.test.js tests/invoices/waiver-autolink-target.test.js tests/invoices/inbound-promotion.test.js tests/invoices/inbound-promotion-route.test.js tests/invoices/command-exec-hardening.test.js tests/invoices/manual-upload-filename.test.js tests/invoices/scripts-shell-args.test.js tests/invoices/scripts-shell-callsites.test.js tests/invoices/scripts-shell-argv.test.js tests/invoices/pipeline-audit.test.js",
+    "test:platform": "node --test tests/platform/*.integration.test.js",
+    "test:pipeline": "node tests/run-tests.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
+    "@azure/msal-node": "^5.0.6",
+    "@sentry/node": "^10.60.0",
+    "@supabase/supabase-js": "^2.105.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^7.5.1",
+    "mssql": "^12.2.0",
+    "multer": "^2.4.0",
+    "pdf-lib": "^1.17.1",
+    "pg": "^8.20.0",
+    "pino": "^10.3.1",
+    "pino-pretty": "^13.1.3",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.5"
+  }
+}

@@ -1,0 +1,123 @@
+[
+  {
+    "file": "moreno-lien-waiver-plus-invoice.pdf",
+    "description": "Moreno Decorating \u2014 page 1 is lien waiver, page 2 is invoice/billing recap",
+    "expected": {
+      "classification": "invoice",
+      "vendorName": "Moreno Decorating",
+      "hasAmount": true,
+      "hasInvoiceNumber": true
+    }
+  },
+  {
+    "file": "cardinal-materials-invoice.pdf",
+    "description": "Cardinal Materials \u2014 standard single-page invoice",
+    "expected": {
+      "classification": "invoice",
+      "vendorName": "Cardinal Materials",
+      "hasAmount": true,
+      "hasInvoiceNumber": true
+    }
+  },
+  {
+    "file": "johnson-controls-invoice.pdf",
+    "description": "Johnson Controls \u2014 multi-line items same job, should NOT be multi-job",
+    "expected": {
+      "classification": "invoice",
+      "vendorName": "Johnson Controls",
+      "hasAmount": true
+    }
+  },
+  {
+    "file": "red-maple-marketing-invoice.pdf",
+    "description": "Red Maple Marketing \u2014 simple invoice, first one we ever tested",
+    "expected": {
+      "classification": "invoice",
+      "vendorName": "Black Oak",
+      "hasAmount": true,
+      "hasInvoiceNumber": true
+    }
+  },
+  {
+    "file": "allied-specialties-multi-invoice.pdf",
+    "description": "Allied Specialties \u2014 multi-invoice PDF (multiple invoice numbers across pages)",
+    "expected": {
+      "classification": "invoice",
+      "hasAmount": true,
+      "hasLineItems": true,
+      "minLineItems": 2
+    }
+  },
+  {
+    "file": "palmetto-multi-job.pdf",
+    "description": "Palmetto Solutions \u2014 multi-job invoice (different jobs per line item)",
+    "expected": {
+      "classification": "invoice",
+      "vendorName": "Palmetto",
+      "hasAmount": true,
+      "hasLineItems": true
+    }
+  },
+  {
+    "file": "glass-mirrors-invoice.pdf",
+    "description": "Glass & Mirrors Experts \u2014 standard invoice",
+    "expected": {
+      "classification": "invoice",
+      "hasAmount": true,
+      "hasInvoiceNumber": true
+    }
+  },
+  {
+    "file": "glass-mirrors-waiver-only.pdf",
+    "description": "Glass & Mirrors Experts \u2014 standalone lien waiver (no invoice page)",
+    "expected": {
+      "classification": "lien-waiver"
+    }
+  },
+  {
+    "file": "pay-application.pdf",
+    "description": "Pinnacle Savings Bank pay application \u2014 page 1 classified as invoice by Haiku, acceptable since pay apps go through same billing flow",
+    "expected": {
+      "classification": "invoice",
+      "hasAmount": true
+    }
+  },
+  {
+    "file": "delta-cfp-invoice.pdf",
+    "description": "Delta Supply CFP invoice \u2014 Haiku sees as pay-application, acceptable since it goes through same billing flow",
+    "expected": {
+      "classification": "pay-application",
+      "hasAmount": true,
+      "hasInvoiceNumber": true
+    }
+  },
+  {
+    "file": "amazon-credit-note.pdf",
+    "description": "Amazon Business credit note \u2014 should classify as credit-memo",
+    "expected": {
+      "classification": "credit-memo",
+      "hasAmount": true
+    }
+  },
+  {
+    "file": "certificate-of-occupancy.pdf",
+    "description": "Certificate of Occupancy \u2014 non-invoice document (Haiku may return 'certificate' or 'other')",
+    "expected": {
+      "classificationOneOf": [
+        "other",
+        "certificate",
+        "coi"
+      ]
+    }
+  },
+  {
+    "file": "tt-casework-invoice.pdf",
+    "description": "R&R Casework LLC \u2014 single page invoice, vendor should match RRCA01 via domain cache",
+    "expected": {
+      "classification": "invoice",
+      "vendorName": "R & R Casework",
+      "hasAmount": true,
+      "hasInvoiceNumber": true
+    }
+  }
+]
