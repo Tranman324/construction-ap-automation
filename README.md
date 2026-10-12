@@ -1,6 +1,6 @@
-# Toolbox
+# Construction AP Automation (Toolbox)
 
-Toolbox is a production AI document platform for a commercial general contractor. It reads every
+**Toolbox** is the internal name for this construction accounts-payable automation system. It is a production AI document platform for a commercial general contractor. It reads every
 invoice, lien waiver, certificate of insurance, and statement that lands in the accounting inbox. It
 classifies and extracts the documents, matches them to jobs and subcontracts in the ERP, and routes
 them through approval. Approved documents are filed to SharePoint and submitted to the accounting
