@@ -19,6 +19,8 @@ jobs:
         env:
           SUPABASE_URL: http://localhost:54321
           SUPABASE_SERVICE_ROLE_KEY: test-placeholder
+      - name: audit production dependencies
+        run: npm audit --omit=dev
   web:
     runs-on: ubuntu-latest
     timeout-minutes: 25
@@ -32,6 +34,10 @@ jobs:
           node-version: 24
       - run: npm ci --no-audit --no-fund
       - run: npx vitest run
+      - run: npx tsc --noEmit
+      - run: npm run build
+      - name: audit production dependencies
+        run: npm audit --omit=dev
   secrets:
     runs-on: ubuntu-latest
     timeout-minutes: 10
