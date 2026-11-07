@@ -69,7 +69,7 @@ mocked.
 
 ```bash
 cd apps/api && npm ci && npm test      # lint + ~1,200 backend tests
-cd apps/web && npm ci && npx vitest run  # ~2,300 frontend tests
+cd apps/web && npm ci && npx vitest run  # thousands of frontend tests
 ```
 
 ## About this snapshot
